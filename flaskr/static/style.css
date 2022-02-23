@@ -1,0 +1,59 @@
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@font-face {
+    font-family: "Saiyan";
+    src : url("saiyan_sans/Saiyan-Sans.ttf") format('truetype');
+}
+body{
+    background-color: black;
+}
+
+header {
+    background: center url(designs/dbz.png);
+    height: 150px;
+    width: 100%;
+}
+
+#title, #subtitle, #\+, #\= {
+    font-family: "Saiyan";
+    text-align: center;
+    color: white;
+    font-size: 3em ;
+    margin: 10px;
+}
+
+#first_img, #second_img, #result_img {
+    background-color: darkgrey;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+#first_pic, #second_pic {
+    font: 1rem 'Saiyan';
+}
+#generate {
+    font: 1rem 'Saiyan';
+}
+
+#upload_generate {
+    margin-top: 100px;
+}
+
+#images, #upload_generate {
+    padding: 20px;
+    width: auto;
+    align-items: center;
+    display: flex;
+}
+
+
+
+
+
+
