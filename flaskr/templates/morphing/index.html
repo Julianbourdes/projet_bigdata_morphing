@@ -20,47 +20,73 @@
 </header>
 
 <main>
-    <div id="title">
-        Tu as toujours voulu fusionner avec tes amis
-    </div>
-    <div id="subtitle">
-        Maintenant c'est possible
-    </div>
+    <div id="title">C'est l'heure du morphing !</div>
+    <div id="subtitle">Telecharge ta photo maintenant</div>
 
-    <div id="upload">
-
-        <div id="upload_generate">
-            <input type="file" id="first_pic" accept="image/png, image/jpeg">
-            <input type="file" id="second_pic" accept="image/png, image/jpeg">
-            <input id="generate" type="button" value="GENERATE">
+    <div id="upload_pic">
+        <div id="first_pic">
+            <input type="file" id="first_choice" onchange=previewFile('#img1','#first_choice')>
+            <div id="first_img"><img id="img1" src="" height="250px" width="250px"></div>
         </div>
-
+        <div id="="> = </div>
+        <div id="result_pic">
+            <div id="result_img"><img id="img3" src="" height="250px" width="250px"></div>
+        </div>
         <script>
-            var input1 = document.getElementById("first_pic");
-            input1.addEventListener("change", changeImg);
-            function changeImg(){
-                var reader = new FileReader();
-                reader.readAsDataURL(input1.files[0]);
-                /*var img = document.createElement("img");
-                img.src = input1.value.toString();
-                document.getElementById("first_img").appendChild(img);*/
+            function previewFile(img, pic) {
+                const preview = document.querySelector(img);
+                const file = document.querySelector(pic).files[0];
+                const reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+                    // on convertit l'image en une chaîne de caractères base64
+                    preview.src = reader.result;
+                }, false);
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
             }
         </script>
 
-        <div id="images">
-            <div id="first_img"></div>
-            <div id="+"> + </div>
-            <div id="second_img"></div>
-            <div id="="> = </div>
-            <div id="result_img"></div>
+    </div>
+
+    <div id="slidercont">
+        <div id="slideage">
+            <div id="slider1">Age</div>
+            <div class="slidercontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRangeAge">
+            </div>
+            <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value; // Display the default slider value
+
+                // Update the current slider value (each time you drag the slider handle)
+                slider.oninput = function() {
+                    output.innerHTML = this.value;
+                }
+            </script>
+        </div>
+        <div id="slideeyes">
+            <div id="slider2">Yeux</div>
+            <div class="slidercontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRangeEyes">
+            </div>
+            <script>
+                var slider = document.getElementById("myRangeEyes");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value; // Display the default slider value
+
+                // Update the current slider value (each time you drag the slider handle)
+                slider.oninput = function() {
+                    output.innerHTML = this.value;
+                }
+            </script>
         </div>
     </div>
 
-    </div>
-
 </main>
-
-
 
 </body>
 
