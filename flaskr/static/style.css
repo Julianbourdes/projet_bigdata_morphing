@@ -6,25 +6,32 @@
 }
 
 @font-face {
-    font-family: "Saiyan";
-    src : url("saiyan_sans/Saiyan-Sans.ttf") format('truetype');
+    font-family: "Crafty";
+    src : url("crafty_sans/crafty-girls.regular.ttf") format('truetype');
 }
 body{
     background-color: black;
 }
 
 header {
-    background: center url(designs/dbz.png);
+    background: center url(crafty_sans/banner.jpeg);
     height: 100px;
     width: 100%;
 }
 
 #title, #subtitle, #\+, #\={
-    font-family: "Saiyan";
+    font-family: "Crafty";
     text-align: center;
     color: white;
     font-size: 3em ;
     margin: 10px;
+}
+#slider1, #slider2, #slidercont{
+    font-family: "Crafty";
+    text-align: center;
+    color: white;
+    font-size: 1.4em;
+    margin: 5px;
 }
 
 #first_img, #second_img, #result_img {
@@ -44,7 +51,7 @@ header {
     font: 1rem 'Saiyan';
 }
 
-#upload_pic, #slide {
+#upload_pic{
     margin-top: 30px;
     padding: 20px;
     align-items: center;

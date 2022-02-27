@@ -20,24 +20,18 @@
 </header>
 
 <main>
-    <div id="title">Tu as toujours voulu fusionner avec tes amis</div>
-    <div id="subtitle">Maintenant c'est possible</div>
+    <div id="title">C'est l'heure du morphing !</div>
+    <div id="subtitle">Telecharge ta photo maintenant</div>
 
     <div id="upload_pic">
         <div id="first_pic">
             <input type="file" id="first_choice" onchange=previewFile('#img1','#first_choice')>
             <div id="first_img"><img id="img1" src="" height="250px" width="250px"></div>
         </div>
-        <div id="+"> + </div>
-        <div id="second_pic">
-            <input type="file" id="second_choice" onchange=previewFile('#img2','#second_choice')>
-            <div id="second_img"><img id="img2" src="" height="250px" width="250px"></div>
-        </div>
         <div id="="> = </div>
         <div id="result_pic">
             <div id="result_img"><img id="img3" src="" height="250px" width="250px"></div>
         </div>
-
         <script>
             function previewFile(img, pic) {
                 const preview = document.querySelector(img);
@@ -57,21 +51,39 @@
 
     </div>
 
-    <div id="slide">
-        <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <div id="slidercont">
+        <div id="slideage">
+            <div id="slider1">Age</div>
+            <div class="slidercontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRangeAge">
+            </div>
+            <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value; // Display the default slider value
+
+                // Update the current slider value (each time you drag the slider handle)
+                slider.oninput = function() {
+                    output.innerHTML = this.value;
+                }
+            </script>
         </div>
+        <div id="slideeyes">
+            <div id="slider2">Yeux</div>
+            <div class="slidercontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRangeEyes">
+            </div>
+            <script>
+                var slider = document.getElementById("myRangeEyes");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value; // Display the default slider value
 
-        <script>
-            var slider = document.getElementById("myRange");
-            var output = document.getElementById("demo");
-            output.innerHTML = slider.value; // Display the default slider value
-
-            // Update the current slider value (each time you drag the slider handle)
-            slider.oninput = function() {
-                output.innerHTML = this.value;
-            }
-        </script>
+                // Update the current slider value (each time you drag the slider handle)
+                slider.oninput = function() {
+                    output.innerHTML = this.value;
+                }
+            </script>
+        </div>
     </div>
 
 </main>
