@@ -25,7 +25,11 @@
 
     <div id="upload_pic">
         <div id="first_pic">
-            <input type="file" id="first_choice" onchange=previewFile('#img1','#first_choice')>
+            <form method=post action="/upload" enctype=multipart/form-data>
+                <input type="file" id="first_choice" name="first_choice" onchange=previewFile('#img1','#first_choice') accept=".jpg, .jpeg, .png">
+                <input id="upload" type="submit" value="Upload">Upload</input>
+            </form>
+            <button id="transform" type="button">Générer</button>
             <div id="first_img"><img id="img1" src="" height="250px" width="250px"></div>
         </div>
         <div id="="> = </div>
@@ -46,6 +50,8 @@
                 if (file) {
                     reader.readAsDataURL(file);
                 }
+
+
             }
         </script>
 
