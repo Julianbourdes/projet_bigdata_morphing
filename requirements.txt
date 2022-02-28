@@ -1,0 +1,11 @@
+pip==19.0
+flask
+requests
+Pillow
+tqdm
+dlib
+tensorflow==1.15
+tensorflow-gpu==1.15
+kapre==0.1.7
+tensorflow-estimator==1.15.1
+python-dotenv

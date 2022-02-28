@@ -14,3 +14,8 @@ bp = Blueprint('morphing', __name__)
 @bp.route('/')
 def index():
     return render_template('morphing/index.html')
+
+@bp.route('/transform')
+def transform():
+    # TODO Inclure les fonctionnalités IA du notebook
+    return None
