@@ -11,7 +11,6 @@ $(document).ready(function (e) {
         }
 
         for (var x = 0; x < ins; x++) {
-            console.log('toto')
             form_data.append("first_choice", document.getElementById('file').files[x]);
         }
 
@@ -38,4 +37,9 @@ $(document).ready(function (e) {
             }
         });
     });
+
+    $('#transform').on('click', function () {
+        var form_data = new FormData();
+    });
 });
+
