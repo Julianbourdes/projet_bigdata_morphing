@@ -42,26 +42,41 @@ def create_app(test_config=None):
         return '.' in filename and \
                filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-    @app.route('/upload', methods=['GET', 'POST'])
+    @app.route('/upload', methods=['POST'])
     def upload_file():
-        if request.method == 'POST':
-            # check if the post request has the file part
-            if 'first_choice' not in request.files:
-                flash('No file part')
-            file = request.files['first_choice']
-            # If the user does not select a file, the browser submits an
-            # empty file without a filename.
-            print(file.mimetype_params)
-            if file.filename == '':
-                flash('No selected file')
-            if file and allowed_file(file.filename):
-                print('toto')
-                filename = secure_filename(file.filename)
-                print(filename)
-                registered_filename = "image_upload." + filename.rsplit('.', 1)[1].lower()
-                print(registered_filename)
-                file.save(os.path.join(UPLOAD_FOLDER, registered_filename))
-        return jsonify({"Image Uploaded" : registered_filename})
+        print(request)
+        # check if the post request has the file part
+        if 'first_choice' not in request.files:
+            resp = jsonify({'message': 'Pas de fichier'})
+            resp.status_code = 400
+            return resp
+
+        file = request.files['first_choice']
+
+        errors = {}
+        success = False
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            registered_filename = "image_upload." + filename.rsplit('.', 1)[1].lower()
+            file.save(os.path.join(UPLOAD_FOLDER, registered_filename))
+            success = True
+        else:
+            errors[file.filename] = 'Ce type de fichier n\'est pas autorisé'
+
+        if success and errors:
+            errors['message'] = 'Le fichier a bien été chargé'
+            resp = jsonify(errors)
+            resp.status_code = 206
+            return resp
+        if success:
+            resp = jsonify({'message': 'Le fichier a bien été chargé'})
+            resp.status_code = 201
+            return resp
+        else:
+            resp = jsonify(errors)
+            resp.status_code = 400
+            return resp
 
     @app.route('/uploads/<name>')
     def download_file(name):
@@ -70,9 +85,6 @@ def create_app(test_config=None):
     from . import morphing
     app.register_blueprint(morphing.bp)
     app.add_url_rule('/', endpoint='index')
-    app.add_url_rule(
-        "/uploads/<name>", endpoint="download_file", build_only=True
-    )
-    app.add_url_rule('/upload', endpoint="upload_file", build_only=True)
+    app.add_url_rule("/uploads/<name>", endpoint="download_file", build_only=True)
 
     return app

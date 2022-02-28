@@ -4,11 +4,13 @@
 <head>
     <!-- Titre -->
     <title>Morphing - Big Data</title>
-    <meta name="description" content="Un projet de Big Data pour mixer deux visages" />
+    <meta name="description" content="Un projet de Big Data pour ajuster un visage" />
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='designs/favicon.png') }}"/>
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
     <!-- Pour contrôler taille affichage -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -23,13 +25,13 @@
     <div id="title">C'est l'heure du morphing !</div>
     <div id="subtitle">Telecharge ta photo maintenant</div>
 
+    <input style="color: white;" type="file" id="file" name="first_choice" onchange=previewFile('#img1','#file') accept=".jpg, .jpeg, .png" required>
+    <button id="upload">Upload</button>
+    <button id="transform" type="button">Générer</button>
+    <p id="msg" style="color: white;"></p>
+
     <div id="upload_pic">
         <div id="first_pic">
-            <form method=post action="/upload" enctype=multipart/form-data>
-                <input type="file" id="first_choice" name="first_choice" onchange=previewFile('#img1','#first_choice') accept=".jpg, .jpeg, .png">
-                <input id="upload" type="submit" value="Upload">Upload</input>
-            </form>
-            <button id="transform" type="button">Générer</button>
             <div id="first_img"><img id="img1" src="" height="250px" width="250px"></div>
         </div>
         <div id="="> = </div>
@@ -61,33 +63,33 @@
         <div id="slideage">
             <div id="slider1">Age</div>
             <div class="slidercontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRangeAge">
+                <input type="range" min="1" max="100" value="1" class="slider" id="myRangeAge">
             </div>
             <script>
-                var slider = document.getElementById("myRange");
-                var output = document.getElementById("demo");
-                output.innerHTML = slider.value; // Display the default slider value
-
-                // Update the current slider value (each time you drag the slider handle)
-                slider.oninput = function() {
-                    output.innerHTML = this.value;
-                }
+                var slider = document.getElementById("myRangeAge");
+                // var output = document.getElementById("demo");
+                // output.innerHTML = slider.value; // Display the default slider value
+                //
+                // // Update the current slider value (each time you drag the slider handle)
+                // slider.oninput = function() {
+                //     output.innerHTML = this.value;
+                // }
             </script>
         </div>
         <div id="slideeyes">
             <div id="slider2">Yeux</div>
             <div class="slidercontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRangeEyes">
+                <input type="range" min="1" max="100" value="1" class="slider" id="myRangeEyes">
             </div>
             <script>
                 var slider = document.getElementById("myRangeEyes");
-                var output = document.getElementById("demo");
-                output.innerHTML = slider.value; // Display the default slider value
-
-                // Update the current slider value (each time you drag the slider handle)
-                slider.oninput = function() {
-                    output.innerHTML = this.value;
-                }
+                // var output = document.getElementById("demo");
+                // output.innerHTML = slider.value; // Display the default slider value
+                //
+                // // Update the current slider value (each time you drag the slider handle)
+                // slider.oninput = function() {
+                //     output.innerHTML = this.value;
+                // }
             </script>
         </div>
     </div>
